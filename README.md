@@ -37,3 +37,20 @@ npm run server
 # Start the React app:
 npm run dev
 ```
+
+Open your web browser and visit [http://localhost:5173](http://localhost:5173) to use the Goals Keeper App.
+
+## Usage
+
+- To add a new goal, click the "Add Goal" button, enter a title and description, and click "Save."
+- To edit an existing goal, click the "Edit" button on the goal card, make your changes, and click "Save."
+- To delete a goal, click the "Delete" button on the goal card.
+
+## Future Enhancements
+
+In the future, you can consider adding the following features to improve the Goals Keeper App:
+
+- **User Authentication**: Implement user authentication to allow multiple users to have their own sets of goals.
+- **Completed Goals**: Allow users to mark goals as completed and track their progress.
+- **Data Persistence**: Store goals data in a database to ensure data is not lost when the server restarts.
+- **Sharing Goals**: Add the ability for users to share their goals or collaborate on goals with others.
