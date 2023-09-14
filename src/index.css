@@ -1,0 +1,8 @@
+.notification {
+  position: absolute;
+  bottom: 25px;
+  right: 0;
+  max-width: 300px;
+}
+
+$box-background-color: red;
