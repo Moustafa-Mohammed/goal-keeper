@@ -16,6 +16,7 @@ The Goals Keeper App is a simple web application built with React that allows us
 - **Bootstrap Icons**: Icons from Bootstrap Icons are used to enhance the user experience.
 - **Axios**: Axios is used to make HTTP requests to interact with a JSON server to handle data.
 - **JSON-Server**: JSON-Server is used as a mock API to simulate a back-end server for storing and managing goals data.
+- **Redux Toolkit**: Redux Toolkit is used to manage the state of the application, including data fetching with **RTK Query** for efficient API interactions.
 
 ## Getting Started
 
@@ -52,5 +53,4 @@ In the future, you can consider adding the following features to improve the Goa
 
 - **User Authentication**: Implement user authentication to allow multiple users to have their own sets of goals.
 - **Completed Goals**: Allow users to mark goals as completed and track their progress.
-- **Data Persistence**: Store goals data in a database to ensure data is not lost when the server restarts.
 - **Sharing Goals**: Add the ability for users to share their goals or collaborate on goals with others.
