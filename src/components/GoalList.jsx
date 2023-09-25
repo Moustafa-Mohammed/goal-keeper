@@ -1,7 +1,12 @@
 import React from 'react';
 import GoalDetails from './GoalDetails';
+import { useFetchGoalsQuery } from '../app/features/goalsAPI';
 
-export default function goalList({ goals, deleteGoal, editGoal }) {
+export default function goalList() {
+  const { data: goals, isLoading, error, isError } = useFetchGoalsQuery();
+
+  if (isLoading) return <h1>Loading...</h1>;
+  if (isError) return <h1>{error.message}</h1>;
   const goalList = goals.map((goal, idx) => {
     return (
       <GoalDetails
@@ -12,8 +17,6 @@ export default function goalList({ goals, deleteGoal, editGoal }) {
         }
         key={goal.id}
         goal={goal}
-        deleteGoal={deleteGoal}
-        editGoal={editGoal}
       />
     );
   });

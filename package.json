@@ -5,20 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server": "json-server -p 3001 --watch db.json --host 127.0.0.1",
+    "server": "json-server -p 3000 --watch db.json --host 127.0.0.1",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "axios": "^1.5.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
     "json-server": "^0.17.3",
     "jsonc": "^2.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

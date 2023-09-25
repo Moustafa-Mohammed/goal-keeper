@@ -1,23 +1,34 @@
-import { useState } from 'react';
-import Editgoal from './EditGoal';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../app/features/notificationSlice";
+import Editgoal from "./EditGoal";
+import { useDeleteGoalMutation } from "../app/features/goalsAPI";
 
-export default function GoalDetails({ goal, deleteGoal, editGoal, className }) {
+export default function GoalDetails({ goal, className }) {
+  const dispatch = useDispatch();
+
   const [showEditForm, setShowEditForm] = useState(false);
 
-  const handleEditGoal = (id, newTitle, newDescription) => {
-    editGoal(id, newTitle, newDescription);
-    setShowEditForm(false);
+  const [deleteGoal] = useDeleteGoalMutation();
+
+  const handleDeleteGoal = async () => {
+    await deleteGoal(goal.id);
+    dispatch(
+      setNotification({
+        heading: "Deleted",
+        message: "The goal has been successfully deleted",
+        type: "delete",
+      })
+    );
   };
 
   return (
     <div className={className}>
       {showEditForm ? (
         <Editgoal
+          closeEditForm={() => setShowEditForm(false)}
           className={className}
           goal={goal}
-          onSubmit={handleEditGoal}
-          setShowEditForm={setShowEditForm}
-          cancelEdit={() => setShowEditForm(false)}
         />
       ) : (
         <div className="card d-flex shadow-sm border-0 bg-body-tertiary">
@@ -26,7 +37,7 @@ export default function GoalDetails({ goal, deleteGoal, editGoal, className }) {
               <i
                 className="bi bi-x-circle-fill text-danger "
                 aria-label="delete-goal"
-                onClick={() => deleteGoal(goal.id)}
+                onClick={handleDeleteGoal}
                 role="button"
               ></i>
               <i
