@@ -64,6 +64,7 @@ export default function Addgoal() {
           className="form-control"
           placeholder="Describe your goal here"
           id="description"
+          rows="5"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>

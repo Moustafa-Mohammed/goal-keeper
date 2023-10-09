@@ -1,12 +1,15 @@
 import GoalDetails from "./GoalDetails";
 import { useFetchGoalsQuery } from "../app/features/goalsAPI";
 
-export default function GoalList() {
+export default function GoalList({ filterGoals }) {
   const { data: goals, isLoading, error, isError } = useFetchGoalsQuery();
 
   if (isLoading) return <h1>Loading...</h1>;
   if (isError) return <h1>{error.message}</h1>;
-  const goalList = goals.map((goal, idx) => {
+
+  const filteredGoals = filterGoals(goals);
+  console.log(filteredGoals);
+  const goalList = filteredGoals.map((goal, idx) => {
     return (
       <GoalDetails
         className={

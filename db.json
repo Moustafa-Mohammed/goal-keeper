@@ -1,14 +1,19 @@
 {
   "goals": [
     {
-      "title": "ggw3",
-      "description": "g32gh32",
-      "id": "Yhwr_NWz9H_BTPPSJ37SW"
+      "title": "Learn React",
+      "description": "The library for web and native user interfaces",
+      "id": "Ez83DlUfA5NX6G7j6bxqZ"
     },
     {
-      "title": "gewhg",
-      "description": "herwrhwe",
-      "id": "GN3duYt9y2k-Fe4ECbNzq"
+      "title": "Learn Redux",
+      "description": "A Predictable State Container for JS Apps",
+      "id": "wwY3o022DPKgnEe-2csBr"
+    },
+    {
+      "title": "Learn Nextjs",
+      "description": "The React Framework for the Web",
+      "id": "bThYoa0xGgMtM3p6KhhTY"
     }
   ]
 }
