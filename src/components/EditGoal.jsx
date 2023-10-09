@@ -1,39 +1,30 @@
 import { useState, useEffect, useRef } from "react";
-import { useUpdateGoalMutation } from "../app/features/goalsAPI";
 import { useDispatch } from "react-redux";
+
+import { useUpdateGoalMutation } from "../app/features/goalsAPI";
 import { setNotification } from "../app/features/notificationSlice";
 
 const EditGoal = ({ goal, closeEditForm }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
-  const [goalState, setGoalState] = useState({
-    title: goal.title,
-    description: goal.description,
-  });
 
+  // state variables
+  const [title, setTitle] = useState(goal.title);
+  const [description, setDescription] = useState(goal.description);
+
+  // RTK Query Mutations
   const [editGoal] = useUpdateGoalMutation();
 
-  const { title, description } = goalState;
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setGoalState((prevGoal) => {
-      return {
-        ...prevGoal,
-        [name]: value,
-      };
-    });
-  };
-
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    await editGoal({ id: goal.id, title, description });
+    editGoal({ id: goal.id, title, description });
     closeEditForm();
     dispatch(
       setNotification({
         heading: "Edited",
         message: "Your goal has been edited successfully",
+        type: "success",
       })
     );
   };
@@ -56,7 +47,7 @@ const EditGoal = ({ goal, closeEditForm }) => {
             id="title"
             name="title"
             value={title}
-            onChange={handleChange}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </fieldset>
 
@@ -66,7 +57,7 @@ const EditGoal = ({ goal, closeEditForm }) => {
             id="description"
             name="description"
             value={description}
-            onChange={handleChange}
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </fieldset>
         <button className="btn btn-outline-success btn-sm me-2">Save</button>

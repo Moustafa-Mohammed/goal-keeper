@@ -9,12 +9,7 @@ export default function NotificationModal() {
     (state) => state.notifications
   );
 
-  let alertType =
-    type === "success"
-      ? "alert-success"
-      : type === "delete"
-      ? "alert-danger"
-      : "alert-info";
+  let alertType = type === "success" ? "alert-success" : "alert-danger";
   const handleCloseModal = () => {
     dispatch(clearNotification());
   };
@@ -29,7 +24,7 @@ export default function NotificationModal() {
   const modalPortal = createPortal(
     <div
       className={`alert ${alertType} ms-auto position-fixed bottom-0 end-0`}
-      style={{ maxWidth: "400px" }}
+      style={{ maxWidth: "400px", minWidth: "300px" }}
       role="alert"
     >
       <div className="d-flex justify-content-between">
@@ -42,7 +37,7 @@ export default function NotificationModal() {
       </div>
       <hr />
       <div className="d-flex gap-1">
-        <i className="bi bi-check-circle-fill"></i>
+        {type === "success" && <i className="bi bi-check-circle-fill"></i>}
         <p>{message}</p>
       </div>
     </div>,

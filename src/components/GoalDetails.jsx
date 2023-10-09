@@ -12,14 +12,25 @@ export default function GoalDetails({ goal, className }) {
   const [deleteGoal] = useDeleteGoalMutation();
 
   const handleDeleteGoal = async () => {
-    await deleteGoal(goal.id);
-    dispatch(
-      setNotification({
-        heading: "Deleted",
-        message: "The goal has been successfully deleted",
-        type: "delete",
-      })
-    );
+    const result = await deleteGoal(goal.id);
+
+    if ("error" in result) {
+      dispatch(
+        setNotification({
+          heading: "Sorry",
+          message: "Something went wrong",
+          type: "error",
+        })
+      );
+    } else {
+      dispatch(
+        setNotification({
+          heading: "Deleted",
+          message: "The goal has been successfully deleted",
+          type: "success",
+        })
+      );
+    }
   };
 
   return (
@@ -31,7 +42,7 @@ export default function GoalDetails({ goal, className }) {
           goal={goal}
         />
       ) : (
-        <div className="card d-flex shadow-sm border-0 bg-body-tertiary">
+        <div className="card d-flex shadow-sm border-0 bg-secondary-subtle">
           <div className="card-body position-relative">
             <div className="position-absolute end-0 p-2">
               <i

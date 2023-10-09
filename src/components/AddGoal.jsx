@@ -1,31 +1,39 @@
 import { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useAddGoalMutation } from "../app/features/goalsAPI";
 import { nanoid } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+
+import { useAddGoalMutation } from "../app/features/goalsAPI";
 import { setNotification } from "../app/features/notificationSlice";
 
 export default function Addgoal() {
   const dispatch = useDispatch();
   const inputRef = useRef();
+
+  // State variables
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const [addGoal] = useAddGoalMutation();
+  // RTK Query Mutations
+  const [addGoal, { isLoading }] = useAddGoalMutation();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    addGoal({ title, description, id: nanoid() });
+
+    const newGoal = { title, description, id: nanoid() };
+    const notification = {
+      heading: "Well done!",
+      message: "A new goal has been added successfully",
+      type: "success",
+    };
+
+    addGoal(newGoal);
+    dispatch(setNotification(notification));
+
     setTitle("");
     setDescription("");
-    dispatch(
-      setNotification({
-        heading: "Well done!",
-        message: "A new goal has been added successfully",
-        type: "success",
-      })
-    );
   };
 
+  // focus on input on page load
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -61,7 +69,18 @@ export default function Addgoal() {
         ></textarea>
       </fieldset>
       <button className="btn btn-primary" disabled={!(title && description)}>
-        Add goal
+        {isLoading ? (
+          <>
+            <span
+              class="spinner-border spinner-border-sm me-1"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span>Adding New Goal</span>
+          </>
+        ) : (
+          "Add goal"
+        )}
       </button>
     </form>
   );

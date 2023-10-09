@@ -1,8 +1,7 @@
-import React from "react";
 import GoalDetails from "./GoalDetails";
 import { useFetchGoalsQuery } from "../app/features/goalsAPI";
 
-export default function goalList() {
+export default function GoalList() {
   const { data: goals, isLoading, error, isError } = useFetchGoalsQuery();
 
   if (isLoading) return <h1>Loading...</h1>;
