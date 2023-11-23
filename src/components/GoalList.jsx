@@ -9,7 +9,7 @@ export default function GoalList({ filterGoals }) {
 
   const filteredGoals = filterGoals(goals);
   console.log(filteredGoals);
-  const goalList = filteredGoals.map((goal, idx) => {
+  const goalList = filteredGoals.reverse().map((goal, idx) => {
     return (
       <GoalDetails
         className={
