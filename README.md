@@ -24,10 +24,10 @@ To get started with the Goals Keeper App, follow these steps:
 
 ```bash
 # Clone the repository to your local machine:
-git clone https://github.com/Moustafa-Mohammed/Goals-Keeper-App.git
+git clone git@github.com:Moustafa-Mohammed/goal-keeper.git
 
 # Navigate to the project directory:
-cd Goals-Keeper-App
+cd goal-keeper
 
 # Install the required dependencies:
 npm install
